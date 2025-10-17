@@ -1,36 +1,42 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Heart } from "lucide-react"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Heart } from "lucide-react";
 
 export default function LoginPage() {
-  const router = useRouter()
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setIsLoading(true)
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
 
     if (username === "admin" && password === "WeddingPass") {
-      localStorage.setItem("auth_token", "authenticated")
-      router.push("/dashboard")
+      localStorage.setItem("auth_token", "authenticated");
+      router.push("/dashboard");
     } else {
-      setError("Invalid username or password")
+      setError("Invalid username or password");
     }
 
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-white flex items-center justify-center px-4">
@@ -39,7 +45,9 @@ export default function LoginPage() {
           <div className="flex justify-center mb-4">
             <Heart className="h-8 w-8 text-rose-500" />
           </div>
-          <CardTitle className="text-3xl font-serif text-rose-900">Wedding Invites</CardTitle>
+          <CardTitle className="text-3xl font-serif text-rose-900">
+            Wedding Invites
+          </CardTitle>
           <CardDescription>Admin Dashboard Login</CardDescription>
         </CardHeader>
         <CardContent>
@@ -70,24 +78,20 @@ export default function LoginPage() {
               />
             </div>
 
-            {error && <p className="text-sm text-destructive font-medium">{error}</p>}
+            {error && (
+              <p className="text-sm text-destructive font-medium">{error}</p>
+            )}
 
-            <Button type="submit" className="w-full bg-rose-600 hover:bg-rose-700" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full bg-rose-600 hover:bg-rose-700"
+              disabled={isLoading}
+            >
               {isLoading ? "Logging in..." : "Login"}
             </Button>
           </form>
-
-          <div className="mt-6 p-4 bg-rose-50 rounded-lg text-sm text-rose-700">
-            <p className="font-medium mb-1">Demo Credentials:</p>
-            <p>
-              Username: <span className="font-mono">admin</span>
-            </p>
-            <p>
-              Password: <span className="font-mono">WeddingPass</span>
-            </p>
-          </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
