@@ -1,21 +1,27 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Plus, User, Users, Phone, Armchair } from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
-import { AddInviteeModal } from "@/components/add-invitee-modal"
-import type { Invitee } from "@/lib/storage"
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Plus, User, Users, Phone, Armchair } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { AddInviteeModal } from "@/components/add-invitee-modal";
+import type { Invitee } from "@/lib/storage";
 
-export function InviteesList({ invitees, onRefresh }: { invitees: Invitee[]; onRefresh: () => void }) {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+export function InviteesList({
+  invitees,
+  onRefresh,
+}: {
+  invitees: Invitee[];
+  onRefresh: () => void;
+}) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalClose = () => {
-    setIsModalOpen(false)
-    onRefresh()
-  }
+    setIsModalOpen(false);
+    onRefresh();
+  };
 
   if (invitees.length === 0) {
     return (
@@ -24,20 +30,28 @@ export function InviteesList({ invitees, onRefresh }: { invitees: Invitee[]; onR
           <Users className="h-8 w-8 text-rose-600" />
         </div>
         <h3 className="text-xl font-semibold mb-2">No guests yet</h3>
-        <p className="text-muted-foreground mb-6">Start building your guest list by adding your first invitee</p>
-        <Button onClick={() => setIsModalOpen(true)} className="bg-rose-600 hover:bg-rose-700 gap-2">
+        <p className="text-muted-foreground mb-6">
+          Start building your guest list by adding your first invitee
+        </p>
+        <Button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-rose-600 hover:bg-rose-700 gap-2"
+        >
           <Plus className="h-4 w-4" />
           Add First Guest
         </Button>
         <AddInviteeModal isOpen={isModalOpen} onClose={handleModalClose} />
       </div>
-    )
+    );
   }
 
   return (
     <>
       <div className="mb-4">
-        <Button onClick={() => setIsModalOpen(true)} className="bg-rose-600 hover:bg-rose-700 gap-2">
+        <Button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-rose-600 hover:bg-rose-700 gap-2"
+        >
           <Plus className="h-4 w-4" />
           Add Guest
         </Button>
@@ -58,8 +72,15 @@ export function InviteesList({ invitees, onRefresh }: { invitees: Invitee[]; onR
                       )}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg text-balance">{invitee.name}</h3>
-                      <Badge variant={invitee.status === "Family" ? "default" : "secondary"} className="mt-1">
+                      <h3 className="font-semibold text-lg text-balance">
+                        {invitee.name}
+                      </h3>
+                      <Badge
+                        variant={
+                          invitee.status === "Family" ? "default" : "secondary"
+                        }
+                        className="mt-1"
+                      >
                         {invitee.status}
                       </Badge>
                     </div>
@@ -84,5 +105,5 @@ export function InviteesList({ invitees, onRefresh }: { invitees: Invitee[]; onR
 
       <AddInviteeModal isOpen={isModalOpen} onClose={handleModalClose} />
     </>
-  )
+  );
 }

@@ -1,9 +1,16 @@
 [
   {
     "id": "627f1d8f-1afb-45f9-8ec3-b0344f7ef0c0",
-    "name": "Precious Tom",
-    "phone": "08021325996",
-    "seat_number": "A1",
-    "status": "Single"
+    "name": "Church Guests",
+    "phone": "07047132058",
+    "seat_number": "Seat 10",
+    "status": "Group"
+  },
+  {
+    "id": "b07f1d8f-af1b-5f49-8ec3-62344f7ef0c0",
+    "name": "Second Bus Bayelsa",
+    "phone": "07047132058",
+    "seat_number": "Table 12",
+    "status": "Group"
   }
 ]
